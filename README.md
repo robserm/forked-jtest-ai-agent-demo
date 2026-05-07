@@ -1,6 +1,6 @@
-# jtest-static-analysis Skill Demo (Windows, Linux, macOS)
+# jtest-static-analysis and jtest-unit-testing Skills Demo (Windows, Linux, macOS)
 
-This tutorial shows how to integrate the `jtest-static-analysis` skill into a coding agent, then analyze and fix static analysis violations in an example project.
+This tutorial shows how to integrate the `jtest-static-analysis` and `jtest-unit-testing` skills into a coding agent, then use them to fix static analysis violations and generate unit tests in an example project.
 
 Skill sources are located in repository: https://github.com/parasoft/jtest-ai-agent-skills
 
@@ -51,7 +51,7 @@ install.bat --jtest.home "C:\Parasoft\jtest" copilot-cli codex-cli
 
 > **Note:** The script installs skills and agents definitions to the agent's user-level skills directory and writes the Jtest
 > MCP server entry to the agent's MCP configuration file. For GitHub Copilot, project-local
-> installation is also supported — place the `jtest-static-analysis` directory under `.github/skills/`
+> installation is also supported — place the  `jtest-static-analysis` and `jtest-unit-testing` directories under `.github/skills/`
 > and the contents of the `agents` directory under `.github/agents/` in your repository.
 
 > **Tip:** If Python 3 is not found on Windows, the script cannot automatically update an existing
@@ -60,16 +60,19 @@ install.bat --jtest.home "C:\Parasoft\jtest" copilot-cli codex-cli
 
 ## Step 3: Set environment variables for the demo project
 
-The skill is non-interactive and expects environment variables.
+The skills are non-interactive and expect certain environment variables to be present.
 
 PowerShell (Windows):
 ```powershell
 $env:JTEST_HOME = "<YOUR_JTEST_INSTALLATION_DIRECTORY>"
 $env:ANALYZED_PROJECT_PATH = "$env:JTEST_HOME\examples\demo"
 $env:JTEST_STATIC_CONFIGURATION = "builtin://Recommended Rules"
+$env:JTEST_UTA_CONFIGURATION = "builtin://Create Unit Tests"
 $env:JTEST_COMMIT_FIXES = "false"
 # Optional settings:
 # $env:JTEST_SETTINGS = "C:\path\to\jtestcli.properties"
+# $env:JTEST_FIX_ATTEMPTS = "3"
+# $env:JTEST_UTA_NO_OF_MAX_FIXES = "50"
 ```
 
 Command Prompt (Windows `cmd`):
@@ -77,9 +80,12 @@ Command Prompt (Windows `cmd`):
 set "JTEST_HOME=<YOUR_JTEST_INSTALLATION_DIRECTORY>"
 set "ANALYZED_PROJECT_PATH=%JTEST_HOME%\examples\demo"
 set "JTEST_STATIC_CONFIGURATION=builtin://Recommended Rules"
+set "JTEST_UTA_CONFIGURATION=builtin://Create Unit Tests"
 set "JTEST_COMMIT_FIXES=false"
 rem Optional settings:
 rem set "JTEST_SETTINGS=C:\path\to\jtestcli.properties"
+rem set "JTEST_FIX_ATTEMPTS=3"
+rem set "JTEST_UTA_NO_OF_MAX_FIXES=50"
 ```
 
 Bash/Zsh (Linux/macOS):
@@ -87,9 +93,12 @@ Bash/Zsh (Linux/macOS):
 export JTEST_HOME="<YOUR_JTEST_INSTALLATION_DIRECTORY>"
 export ANALYZED_PROJECT_PATH="$JTEST_HOME/examples/demo"
 export JTEST_STATIC_CONFIGURATION="builtin://Recommended Rules"
+export JTEST_UTA_CONFIGURATION="builtin://Create Unit Tests"
 export JTEST_COMMIT_FIXES="false"
 # Optional settings:
 # export JTEST_SETTINGS="/path/to/jtestcli.properties"
+# export JTEST_FIX_ATTEMPTS="3"
+# export JTEST_UTA_NO_OF_MAX_FIXES="50"
 ```
 
 ## Step 4: Open the demo project in your agent
@@ -113,8 +122,23 @@ Send this prompt:
 Use jtest-static-analysis to fix violations in priority order, but fix at most 5 violations in this run. Do not suppress violations. After each fix, run tests and re-run Jtest verification against the baseline report as required by the skill.
 ```
 
+## Step 6: Ask the agent to generate unit tests
 
-## Step 6: Validate the results
+After static-analysis fixes are applied, run the unit-testing skill to improve coverage around changed code.
+
+Send this prompt:
+
+```text
+Use jtest-unit-testing to create unit tests for the project. Keep only passing tests in the final result.
+```
+
+Or:
+
+```text
+Use jtest-unit-testing to create unit tests for locally modified files. Keep only passing tests in the final result.
+```
+
+## Step 7: Validate the results
 
 Manually verify the result and inspect git diff (project must be under git source control for this):
 
@@ -123,7 +147,7 @@ git status --short
 git diff
 ```
 
-## Step 7: Optional automatic commit mode
+## Step 8: Optional automatic commit mode
 
 If you want the skill to commit each successful fix:
 
@@ -142,19 +166,20 @@ Bash/Zsh (Linux/macOS):
 export JTEST_COMMIT_FIXES="true"
 ```
 
-Then rerun Step 5.
+Then rerun Steps 5-6.
 
-## Step 8: Common failures and quick fixes
+## Step 9: Common failures and quick fixes
 
 - `JTEST_HOME` not set or invalid: set `JTEST_HOME` and verify `jtestcli` exists there.
 - `ANALYZED_PROJECT_PATH` invalid: point to `jtest-ai-agent-demo`.
 - Build/tests fail: fix compilation or test failures first.
 - Missing `JTEST_SETTINGS` file: correct the path or unset the variable.
 - No violations found: this is a valid success state.
+- No tests created: the code is either not well-testable or already well-tested.
 
 ## References
 
-- Jtest skill file used in this tutorial:
+- Jtest skills used in this tutorial:
     - [`Jtest AI Integration`](https://github.com/parasoft/jtest-ai-agent-skills)
 - Jtest MCP tools setup:
     - `[JTEST_HOME]/integration/mcp/MCP_SETUP.md`
