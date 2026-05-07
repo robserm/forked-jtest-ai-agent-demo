@@ -66,8 +66,6 @@ PowerShell (Windows):
 ```powershell
 $env:JTEST_HOME = "<YOUR_JTEST_INSTALLATION_DIRECTORY>"
 $env:ANALYZED_PROJECT_PATH = "$env:JTEST_HOME\examples\demo"
-$env:JTEST_STATIC_CONFIGURATION = "builtin://Recommended Rules"
-$env:JTEST_UTA_CONFIGURATION = "builtin://Create Unit Tests"
 $env:JTEST_COMMIT_FIXES = "false"
 # Optional settings:
 # $env:JTEST_SETTINGS = "C:\path\to\jtestcli.properties"
@@ -79,8 +77,6 @@ Command Prompt (Windows `cmd`):
 ```bat
 set "JTEST_HOME=<YOUR_JTEST_INSTALLATION_DIRECTORY>"
 set "ANALYZED_PROJECT_PATH=%JTEST_HOME%\examples\demo"
-set "JTEST_STATIC_CONFIGURATION=builtin://Recommended Rules"
-set "JTEST_UTA_CONFIGURATION=builtin://Create Unit Tests"
 set "JTEST_COMMIT_FIXES=false"
 rem Optional settings:
 rem set "JTEST_SETTINGS=C:\path\to\jtestcli.properties"
@@ -92,14 +88,19 @@ Bash/Zsh (Linux/macOS):
 ```bash
 export JTEST_HOME="<YOUR_JTEST_INSTALLATION_DIRECTORY>"
 export ANALYZED_PROJECT_PATH="$JTEST_HOME/examples/demo"
-export JTEST_STATIC_CONFIGURATION="builtin://Recommended Rules"
-export JTEST_UTA_CONFIGURATION="builtin://Create Unit Tests"
 export JTEST_COMMIT_FIXES="false"
 # Optional settings:
 # export JTEST_SETTINGS="/path/to/jtestcli.properties"
 # export JTEST_FIX_ATTEMPTS="3"
 # export JTEST_UTA_NO_OF_MAX_FIXES="50"
 ```
+
+Note:
+The default configurations settings are:
+- JTEST_STATIC_CONFIGURATION="builtin://Recommended Rules" for Jtest Static Analysis Skill 
+- JTEST_UTA_CONFIGURATION="builtin://Create Unit Tests" for Jtest Unit Testing Skill
+
+Change those settings if you need to use a different configurations.
 
 ## Step 4: Open the demo project in your agent
 
