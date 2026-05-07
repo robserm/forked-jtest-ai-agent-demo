@@ -100,7 +100,7 @@ The default configurations settings are:
 - JTEST_STATIC_CONFIGURATION="builtin://Recommended Rules" for Jtest Static Analysis Skill 
 - JTEST_UTA_CONFIGURATION="builtin://Create Unit Tests" for Jtest Unit Testing Skill
 
-Change those settings if you need to use a different configurations.
+Change those settings if you need to use different configurations.
 
 ## Step 4: Open the demo project in your agent
 
