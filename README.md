@@ -65,7 +65,7 @@ The skills are non-interactive and expect certain environment variables to be pr
 PowerShell (Windows):
 ```powershell
 $env:JTEST_HOME = "<YOUR_JTEST_INSTALLATION_DIRECTORY>"
-$env:ANALYZED_PROJECT_PATH = "$env:JTEST_HOME\examples\demo"
+$env:ANALYZED_PROJECT_PATH = "$env:<CLONED_PROJECTS_DIRECTORY>\jtest-ai-agent-demo"
 $env:JTEST_COMMIT_FIXES = "false"
 # Optional settings:
 # $env:JTEST_SETTINGS = "C:\path\to\jtestcli.properties"
@@ -76,7 +76,7 @@ $env:JTEST_COMMIT_FIXES = "false"
 Command Prompt (Windows `cmd`):
 ```bat
 set "JTEST_HOME=<YOUR_JTEST_INSTALLATION_DIRECTORY>"
-set "ANALYZED_PROJECT_PATH=%JTEST_HOME%\examples\demo"
+set "ANALYZED_PROJECT_PATH=<CLONED_PROJECTS_DIRECTORY>\jtest-ai-agent-demo"
 set "JTEST_COMMIT_FIXES=false"
 rem Optional settings:
 rem set "JTEST_SETTINGS=C:\path\to\jtestcli.properties"
@@ -87,7 +87,7 @@ rem set "JTEST_UTA_NO_OF_MAX_FIXES=50"
 Bash/Zsh (Linux/macOS):
 ```bash
 export JTEST_HOME="<YOUR_JTEST_INSTALLATION_DIRECTORY>"
-export ANALYZED_PROJECT_PATH="$JTEST_HOME/examples/demo"
+export ANALYZED_PROJECT_PATH="<CLONED_PROJECTS_DIRECTORY>/jtest-ai-agent-demo"
 export JTEST_COMMIT_FIXES="false"
 # Optional settings:
 # export JTEST_SETTINGS="/path/to/jtestcli.properties"
@@ -183,7 +183,7 @@ Then rerun Steps 5-6.
 - Jtest skills used in this tutorial:
     - [`Jtest AI Integration`](https://github.com/parasoft/jtest-ai-agent-skills)
 - Jtest MCP tools setup:
-    - `[JTEST_HOME]/integration/mcp/MCP_SETUP.md`
+    - `[JTEST_HOME]/integration/mcp/README.md`
 - Copilot skills docs:
     - https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-skills
 - Codex CLI skills docs:
