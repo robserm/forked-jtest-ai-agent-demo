@@ -43,7 +43,7 @@ chmod +x install.sh
 
 The `--jtest.home` argument can be omitted if the `JTEST_HOME` environment variable is already set.
 
-Replace `copilot-cli` with the identifier for your agent. Multiple agents can be installed at once:
+Replace `copilot-cli` with the identifier for your agent:
 
 ```bat
 install.bat --jtest.home "C:\Parasoft\jtest" codex-cli
