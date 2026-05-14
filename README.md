@@ -46,7 +46,7 @@ The `--jtest.home` argument can be omitted if the `JTEST_HOME` environment varia
 Replace `copilot-cli` with the identifier for your agent. Multiple agents can be installed at once:
 
 ```bat
-install.bat --jtest.home "C:\Parasoft\jtest" copilot-cli codex-cli
+install.bat --jtest.home "C:\Parasoft\jtest" codex-cli
 ```
 
 > **Note:** The script installs skills and agents definitions to the agent's user-level skills directory and writes the Jtest
