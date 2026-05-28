@@ -10,8 +10,6 @@ For the purpose of this tutorial we demonstrate integration with GitHub Copilot 
 
 ## Overview
 
----
-
 This repository is an example java project that demonstrates how the Parasoft Jtest AI agent skills can be used to automatically fix static analysis violations inside a GitHub CI/CD pipeline.
 
 The key idea is that when a pull request is created, the pipeline runs Jtest, detects violations, and then invokes an AI coding agent (GitGub Copilot, or others) equipped with Jtest skills and MCP tools to automatically fix the violations, commit the fixes to a new branch, and open a new pull request.
@@ -20,8 +18,6 @@ The Jtest AI Agent skills used in this project are taken from the [parasoft/jtes
 
 
 ## Prerequisites
-
----
 
 The following prerequisites apply to both the GitHub Actions and local workstation workflows.
 
@@ -38,8 +34,6 @@ using `install.sh` script to configure jtest MCP and add the skills to your agen
 
 
 ## GitHub Action workflow
-
----
 
 ### 1. Preparation
 1. Fork or copy this repository.
@@ -76,8 +70,6 @@ Opening a pull request triggers the workflow defined in [.github/workflows/jtest
 
 ## Local workstation workflow
 
----
-
 ### 1. Preparation  
 1. Clone the repository to your local machine.
 2. Configure JTEST_HOME and other settings in `.github/workflows/jtest-analyzer.config` or via environment variables as described in [parasoft/jtest-ai-agent-skills#configuration-reference](https://github.com/parasoft/jtest-ai-agent-skills#configuration-reference)  
@@ -89,3 +81,4 @@ b) Ensure that `JTEST_COMMIT_FIXES` is set to `false`
 
 ### 3. Review changes
 1. Review the changes applied on project code.
+   
