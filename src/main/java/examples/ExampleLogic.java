@@ -20,8 +20,8 @@ public class ExampleLogic
     public void appendMessageToFile(File file, String message, int loglevel)
         throws IOException
     {
-        _lock.lock();
         try {
+            _lock.lock();
             try (Writer writer = new FileWriter(file, Charset.defaultCharset(), true)) {
                 String datePrefix = _dateFormat.format(new Date());
                 String line = datePrefix + MSG_SEPARATOR + message + NEW_LINE;
