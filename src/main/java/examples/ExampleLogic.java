@@ -17,7 +17,7 @@ public class ExampleLogic
     private final String MSG_SEPARATOR = ": ";
     private final String NEW_LINE = "\n";
 
-    public void appendMessageToFile(File file, String message)
+    public void appendMessageToFile(File file, String message, int loglevel)
         throws IOException
     {
         _lock.lock();
